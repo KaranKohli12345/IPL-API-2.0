@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import analysis
 
 app = Flask(__name__)
@@ -14,4 +14,16 @@ def teams():
 
     return jsonify(response)
 
-app.run(host='0.0.0.0', port=5000)
+# API-2
+@app.route('/api/teamVsTeam')
+def team_Vs_Team():
+    team1 = request.args.get('team1')
+    team2 = request.args.get('team2')
+
+    response = analysis.teamVsTeam(team1, team2)
+
+    return jsonify(response)
+
+
+
+app.run(debug=True)
