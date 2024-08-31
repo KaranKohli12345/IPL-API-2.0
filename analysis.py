@@ -25,3 +25,21 @@ def teamVsTeam(team1, team2):
         'Draws': draws
     }
     return team_vs_team_record
+
+def teamRecord(team):
+    df2 = ipl[(ipl.Team1 == team) | (ipl.Team2 == team)]
+    tmp = df2.shape[0]
+    mw = df2[df2.WinningTeam == team].shape[0]
+    draws = df2[df2.WinningTeam.isnull()].shape[0]
+    ml = tmp - (mw + draws)
+    sw = (df2[df2.MatchNumber == 'Final'].WinningTeam == team).sum()
+    
+    overall = {
+        'Total matches played': str(tmp),
+        'Match won': str(mw),
+        'Match lost': str(ml),
+        'Draws': str(draws),
+        'Season winner': str(sw)
+    }
+
+    return overall

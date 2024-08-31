@@ -24,6 +24,13 @@ def team_Vs_Team():
 
     return jsonify(response)
 
+# API-3
+@app.route('/api/team-record')
+def team_record():
+    team = request.args.get('team')
 
+    response = analysis.teamRecord(team)
 
-app.run(debug=True)
+    return jsonify(response)
+
+app.run(host='0.0.0.0', port=5000)
