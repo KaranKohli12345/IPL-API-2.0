@@ -17,14 +17,18 @@ def teamVsTeam(team1, team2):
     mwt1 = df1[df1.WinningTeam == team1].shape[0]
     mwt2 = df1[df1.WinningTeam == team2].shape[0]
     draws = tmp - (mwt1 + mwt2)
-    
+
     team_vs_team_record = {
         'Total matches played': tmp,
         'Matches won by ' + team1: mwt1,
         'Matches won by ' + team2: mwt2,
         'Draws': draws
     }
-    return team_vs_team_record
+    
+    if team1 == team2:
+        return {'Error': 'Teams name should not be same'}
+    else:
+        return team_vs_team_record
 
 def teamRecord(team):
     df2 = ipl[(ipl.Team1 == team) | (ipl.Team2 == team)]

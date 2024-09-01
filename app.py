@@ -25,7 +25,7 @@ def team_Vs_Team():
     return jsonify(response)
 
 # API-3
-@app.route('/api/team-record')
+@app.route('/api/team-record-overall')
 def team_record():
     team = request.args.get('team')
 
