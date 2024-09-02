@@ -26,11 +26,30 @@ def team_Vs_Team():
 
 # API-3
 @app.route('/api/team-record-overall')
-def team_record():
+def team_record_overall():
     team = request.args.get('team')
 
-    response = analysis.teamRecord(team)
+    response = analysis.overallTeamRecord(team)
 
     return jsonify(response)
 
-app.run(host='0.0.0.0', port=5000)
+# API-4
+@app.route('/api/team-record-against-each-team')
+def team_record_against():
+    team = request.args.get('team')
+
+    response = analysis.against_each_team(team)
+
+    return jsonify(response)
+
+# API-5
+@app.route('/api/batter-record')
+def overall_batter_record_():
+    batter = request.args.get('batter')
+
+    response = analysis.overall_batter_record(batter)
+
+    return jsonify(response)
+
+# app.run(host='0.0.0.0', port=5000)
+app.run(debug=True)
